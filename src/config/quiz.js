@@ -75,6 +75,13 @@ export const questions = [
   },
   {
     id: "q10",
+    question: "How many workshops were held by TnD this year?",
+    options: ["11", "12", "13", "14"],
+    correctIndex: 3,
+    durationSeconds: 20,
+  },
+  {
+    id: "q11",
     question: "How many tours has Garage hosted throughout AY25/26?",
     options: [
       "About 6 or 7",
@@ -86,7 +93,7 @@ export const questions = [
     durationSeconds: 20,
   },
   {
-    id: "q11",
+    id: "q12",
     question: "Which of the following should members do after using Garage tools or equipment?",
     options: [
       "Leave them on the table for the next person",
@@ -98,28 +105,28 @@ export const questions = [
     durationSeconds: 20,
   },
   {
-    id: "q12",
+    id: "q13",
     question: "How many televisions does Garage have?",
     options: ["4", "5", "7", "8"],
     correctIndex: 3,
     durationSeconds: 20,
   },
   {
-    id: "q13",
+    id: "q14",
     question: "Which of the following is a flagship event that takes place in January?",
     options: ["Enitio", "IdeasJam", "Escendo", "Innovation Festival"],
     correctIndex: 2,
     durationSeconds: 20,
   },
   {
-    id: "q14",
+    id: "q15",
     question: "What is the name of Garage's mascot?",
     options: ["Cappy", "Leon", "Repo", "Inductorman"],
     correctIndex: 0,
     durationSeconds: 20,
   },
   {
-    id: "q15",
+    id: "q16",
     question: "IdeasJam is mainly related to what type of activity?",
     options: [
       "Startup ideation and pitching",
@@ -131,14 +138,14 @@ export const questions = [
     durationSeconds: 20,
   },
   {
-    id: "q16",
+    id: "q17",
     question: "How many booths do we have today?",
     options: ["9", "10", "11", "12"],
     correctIndex: 3,
     durationSeconds: 20,
   },
   {
-    id: "q17",
+    id: "q18",
     question: "Who do you think is the funniest person in Garage?",
     options: [
       "Bradley",

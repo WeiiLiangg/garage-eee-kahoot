@@ -5,6 +5,7 @@ import { questions } from "../config/quiz.js";
 import { listenToSession } from "../lib/session.js";
 import AnswerBreakdown from "../components/AnswerBreakdown.jsx";
 import Leaderboard from "../components/Leaderboard.jsx";
+import QRCodePanel from "../components/QRCodePanel.jsx";
 import QuestionView from "../components/QuestionView.jsx";
 import StatusBanner from "../components/StatusBanner.jsx";
 
@@ -54,6 +55,13 @@ export default function DisplayPage() {
   const currentResponses = currentQuestion
     ? session?.responses?.[currentQuestion.id] || {}
     : {};
+  const joinUrl = sessionId
+    ? `${window.location.origin}/play?session=${sessionId}`
+    : "";
+  const participantNames = Object.values(session?.participants || {})
+    .map((participant) => participant.nickname)
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b));
   const showQuestionResults =
     session?.status === SESSION_STATUS.QUESTION_ENDED ||
     session?.status === SESSION_STATUS.ANSWER_REVEALED;
@@ -117,9 +125,31 @@ export default function DisplayPage() {
           </section>
 
           {session.status === SESSION_STATUS.WAITING ? (
-            <section className="display-waiting">
-              <h2>Next question coming up</h2>
-              <p>{participantCount} participants joined</p>
+            <section className="display-join-board">
+              <div className="display-join-main">
+                <h2>Join the quiz</h2>
+                <p>{participantCount} participants joined</p>
+                <div className="display-join-link">
+                  <span>Player link</span>
+                  <strong>{joinUrl}</strong>
+                </div>
+              </div>
+              <QRCodePanel value={joinUrl} label={`Session ${sessionId}`} />
+              <section className="display-participants">
+                <div className="panel-header">
+                  <h2>Joined Participants</h2>
+                  <span>{participantCount}</span>
+                </div>
+                {participantNames.length === 0 ? (
+                  <p className="muted">Waiting for participants to join.</p>
+                ) : (
+                  <div className="participant-name-grid">
+                    {participantNames.map((nickname) => (
+                      <span key={nickname}>{nickname}</span>
+                    ))}
+                  </div>
+                )}
+              </section>
             </section>
           ) : !showQuestionResults ? (
             <QuestionView

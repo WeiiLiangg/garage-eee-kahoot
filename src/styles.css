@@ -226,28 +226,99 @@ a {
   text-transform: uppercase;
 }
 
-.display-waiting {
-  display: grid;
-  place-items: center;
+.display-waiting,
+.display-join-board {
   min-height: 420px;
-  padding: 34px;
   border: 2px solid var(--yellow);
   border-radius: 8px;
   background: var(--white);
+}
+
+.display-waiting {
+  display: grid;
+  place-items: center;
+  padding: 34px;
   text-align: center;
 }
 
-.display-waiting h2 {
+.display-join-board {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  gap: 20px;
+  align-items: start;
+  padding: 26px;
+}
+
+.display-join-main {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.display-waiting h2,
+.display-join-main h2 {
   margin: 0;
   font-size: clamp(2.4rem, 7vw, 6rem);
   line-height: 1;
 }
 
-.display-waiting p {
-  margin: 18px 0 0;
+.display-waiting p,
+.display-join-main p {
+  margin: 0;
   color: var(--muted);
   font-size: clamp(1.2rem, 3vw, 2rem);
   font-weight: 800;
+}
+
+.display-join-link {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 2px solid var(--yellow);
+  border-radius: 8px;
+  background: var(--yellow-soft);
+}
+
+.display-join-link span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.display-join-link strong {
+  overflow-wrap: anywhere;
+  font-size: clamp(1.1rem, 2.2vw, 1.65rem);
+}
+
+.display-join-board .qr-panel {
+  margin: 0;
+}
+
+.display-participants {
+  grid-column: 1 / -1;
+  padding: 20px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: #fff9db;
+}
+
+.participant-name-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.participant-name-grid span {
+  min-width: 0;
+  overflow: hidden;
+  padding: 10px 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .display-results-grid {
@@ -692,7 +763,8 @@ a {
 
   .host-grid,
   .option-grid,
-  .display-results-grid {
+  .display-results-grid,
+  .display-join-board {
     grid-template-columns: 1fr;
   }
 
