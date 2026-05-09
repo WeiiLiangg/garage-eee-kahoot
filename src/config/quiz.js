@@ -175,7 +175,7 @@ export const questions = [
       "Bradley",
       "Raphael",
     ],
-    correctIndexes: [0, 1, 2, 3],
+    correctIndexes: [0, 1, 2, 3, 4, 5],
     durationSeconds: 20,
   },
 ];
