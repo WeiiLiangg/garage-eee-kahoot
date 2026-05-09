@@ -3,6 +3,7 @@ import { isFirebaseConfigured } from "../config/firebase.js";
 import { SESSION_STATUS, LOCAL_STORAGE_KEYS } from "../config/constants.js";
 import { questions } from "../config/quiz.js";
 import { createParticipantId } from "../lib/ids.js";
+import { buildLeaderboard } from "../lib/scoring.js";
 import { joinQuizSession, listenToSession, submitAnswer } from "../lib/session.js";
 import JoinPanel from "../components/JoinPanel.jsx";
 import QuestionView from "../components/QuestionView.jsx";
@@ -59,6 +60,9 @@ export default function PlayerPage() {
   const participant = session?.participants?.[participantId];
   const hasJoined = Boolean(participant);
   const remainingSeconds = useCountdown(session, currentQuestion);
+  const leaderboard = buildLeaderboard(session);
+  const playerRank =
+    leaderboard.findIndex((entry) => entry.participantId === participantId) + 1;
 
   useEffect(() => {
     if (!sessionId || !isFirebaseConfigured) {
@@ -224,9 +228,22 @@ export default function PlayerPage() {
           )}
 
           {session.status === SESSION_STATUS.FINISHED && (
-            <section className="state-card">
+            <section className="state-card redemption-card">
+              <p className="eyebrow">Redemption proof</p>
               <h2>Quiz finished</h2>
-              <p>Your final score is {participant.totalScore || 0} points.</p>
+              <div className="redemption-stats">
+                <div>
+                  <span>Rank</span>
+                  <strong>#{playerRank || "-"}</strong>
+                </div>
+                <div>
+                  <span>Score</span>
+                  <strong>{participant.totalScore || 0}</strong>
+                </div>
+              </div>
+              <p>
+                Show this screen to redeem your prize if your rank is called.
+              </p>
             </section>
           )}
         </>

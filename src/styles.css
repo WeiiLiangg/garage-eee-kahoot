@@ -328,6 +328,22 @@ a {
   align-items: start;
 }
 
+.display-final-board {
+  display: grid;
+  gap: 20px;
+}
+
+.display-final-board > .eyebrow {
+  margin: 0;
+}
+
+.display-final-board > h2 {
+  margin: 0;
+  color: var(--yellow);
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.95;
+}
+
 .answer-bars {
   display: grid;
   gap: 14px;
@@ -756,6 +772,42 @@ a {
   padding: 20px;
 }
 
+.redemption-card {
+  display: grid;
+  gap: 16px;
+}
+
+.redemption-card .eyebrow {
+  margin: 0;
+}
+
+.redemption-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.redemption-stats div {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--yellow-soft);
+}
+
+.redemption-stats span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.redemption-stats strong {
+  font-size: clamp(2rem, 10vw, 3.4rem);
+  line-height: 1;
+}
+
 @media (max-width: 760px) {
   .app-shell {
     padding: 14px;
@@ -802,5 +854,9 @@ a {
 
   .answer-bar-count {
     justify-items: start;
+  }
+
+  .redemption-stats {
+    grid-template-columns: 1fr;
   }
 }

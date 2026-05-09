@@ -107,26 +107,34 @@ export const questions = [
   {
     id: "q13",
     question: "How many televisions does Garage have?",
-    options: ["4", "5", "7", "8"],
+    options: ["5", "7", "8", "11"],
     correctIndex: 3,
     durationSeconds: 20,
   },
   {
     id: "q14",
+    question:
+      "As of 9th May 1200, what is the number of followers on the Garage@EEE Instagram?",
+    options: ["2137", "67", "2582", "1849"],
+    correctIndex: 0,
+    durationSeconds: 20,
+  },
+  {
+    id: "q15",
     question: "Which of the following is a flagship event that takes place in January?",
     options: ["Enitio", "IdeasJam", "Escendo", "Innovation Festival"],
     correctIndex: 2,
     durationSeconds: 20,
   },
   {
-    id: "q15",
+    id: "q16",
     question: "What is the name of Garage's mascot?",
     options: ["Cappy", "Leon", "Repo", "Inductorman"],
     correctIndex: 0,
     durationSeconds: 20,
   },
   {
-    id: "q16",
+    id: "q17",
     question: "IdeasJam is mainly related to what type of activity?",
     options: [
       "Startup ideation and pitching",
@@ -138,14 +146,14 @@ export const questions = [
     durationSeconds: 20,
   },
   {
-    id: "q17",
+    id: "q18",
     question: "How many booths do we have today?",
     options: ["9", "10", "11", "12"],
-    correctIndex: 3,
+    correctIndex: 2,
     durationSeconds: 20,
   },
   {
-    id: "q18",
+    id: "q19",
     question: "Who do you think is the funniest person in Garage?",
     options: [
       "Bradley",

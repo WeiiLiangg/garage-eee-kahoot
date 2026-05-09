@@ -58,10 +58,16 @@ export default function DisplayPage() {
   const joinUrl = sessionId
     ? `${window.location.origin}/play?session=${sessionId}`
     : "";
-  const participantNames = Object.values(session?.participants || {})
-    .map((participant) => participant.nickname)
-    .filter(Boolean)
-    .sort((a, b) => a.localeCompare(b));
+  const participantNames = Object.entries(session?.participants || {})
+    .map(([participantId, participant]) => ({
+      participantId,
+      nickname: participant.nickname,
+    }))
+    .filter((participant) => Boolean(participant.nickname))
+    .sort((a, b) => a.nickname.localeCompare(b.nickname));
+  const showPreQuizJoinBoard =
+    session?.status === SESSION_STATUS.WAITING &&
+    (session?.currentQuestionIndex || 0) === 0;
   const showQuestionResults =
     session?.status === SESSION_STATUS.QUESTION_ENDED ||
     session?.status === SESSION_STATUS.ANSWER_REVEALED;
@@ -124,7 +130,7 @@ export default function DisplayPage() {
             </span>
           </section>
 
-          {session.status === SESSION_STATUS.WAITING ? (
+          {showPreQuizJoinBoard ? (
             <section className="display-join-board">
               <div className="display-join-main">
                 <h2>Join the quiz</h2>
@@ -144,12 +150,19 @@ export default function DisplayPage() {
                   <p className="muted">Waiting for participants to join.</p>
                 ) : (
                   <div className="participant-name-grid">
-                    {participantNames.map((nickname) => (
-                      <span key={nickname}>{nickname}</span>
+                    {participantNames.map((participant) => (
+                      <span key={participant.participantId}>{participant.nickname}</span>
                     ))}
                   </div>
                 )}
               </section>
+            </section>
+          ) : session.status === SESSION_STATUS.WAITING ? (
+            <section className="display-waiting">
+              <h2>Next question coming up</h2>
+              <p>
+                Question {questionNumber} of {questions.length}
+              </p>
             </section>
           ) : !showQuestionResults ? (
             <QuestionView
@@ -173,7 +186,11 @@ export default function DisplayPage() {
       )}
 
       {session?.status === SESSION_STATUS.FINISHED && (
-        <Leaderboard session={session} limit={10} title="Final Leaderboard" />
+        <section className="display-final-board">
+          <p className="eyebrow">Garage@EEE Innovation Festival 2026</p>
+          <h2>Final Leaderboard</h2>
+          <Leaderboard session={session} limit={10} title="Winners" />
+        </section>
       )}
     </main>
   );
