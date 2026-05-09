@@ -85,7 +85,7 @@ export const questions = [
     question: "How many tours has Garage hosted throughout AY25/26?",
     options: [
       "About 6 or 7",
-      "11",
+      "8",
       "Too many, I lost track already",
       "Since when do we do Garage tours? I only know room tours by PropertyLimBrothers",
     ],
