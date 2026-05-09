@@ -187,7 +187,6 @@ export default function DisplayPage() {
 
       {session?.status === SESSION_STATUS.FINISHED && (
         <section className="display-final-board">
-          <p className="eyebrow">Garage@EEE Innovation Festival 2026</p>
           <h2>Final Leaderboard</h2>
           <Leaderboard session={session} limit={10} title="Winners" />
         </section>
